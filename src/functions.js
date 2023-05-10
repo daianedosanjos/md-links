@@ -34,7 +34,11 @@ const getMdFiles = (arrayFiles) => {
     const mdFiles = arrayFiles.filter( file => pathNode.extname(file) === '.md');
     return mdFiles;
 };
-
+function trataErro(erro) {
+    console.log(erro);
+    throw new Error(chalk.red(erro.code, 'Não há arquivo no diretório'));
+  }
+  
 const readFiles = (caminhoDoArquivo) => {
     const enconding = 'utf-8';
     const regex = /\[([^[\]]*?)\]\((https?:\/\/[^\s?#.].[^\s]*)\)/gm;
@@ -128,5 +132,6 @@ export {
     httpLinks,
     statsLinks,
     validateStatsLinks,
-    getUniqueLinks
+    getUniqueLinks,
+    readFiles
 };

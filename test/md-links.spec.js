@@ -6,7 +6,7 @@ import {
   httpLinks,
   getUniqueLinks,
   statsLinks,
-  validateStatsLinks
+  validateStatsLinks,
 } from '../src/functions.js';
 
 const relativePath = "arquivos"
@@ -38,14 +38,14 @@ const defaultArray = [
 ];
  const arrayValidate = [
   { 
-    file:  "../arquivos/arquivos.md", 
+    file:  "../arquivos/arquivo.md", 
     text:  "Node.js",
     href: "https://nodejs.org/",        
     status: 200, 
     OK: "OK"
   },
   {
-  file:  "../arquivos/arquivos.md", 
+  file:  "../arquivos/arquivo.md", 
   text:  "Link quebrado",
   href: "https://555555",    
   status: 404, 
@@ -81,7 +81,7 @@ const statsValidateLinksArray = {
 
 
 describe('MdLinks', () => {
-  it('com caminho absoluto, deve retornar uma promessa', ()=>{
+   it('com caminho absoluto, deve retornar uma promessa', ()=>{
     mdLinks("./arquivos").then((res) =>{
      expect(res).toEqual(defaultArray);
     });
@@ -114,13 +114,14 @@ describe('MdLinks com --validate', ()=>{
    });
 });
 
-describe('getUniqueLinks function', ()=>{
+
+describe('getUniqueLinks', ()=>{
    it('deve retornar o número de links únicos', ()=>{
     expect(getUniqueLinks(uniqueLinksArray)).toBe(2);
    });
 });
 
-describe('statsLinks deve retornar o total de links', ()=>{
+describe('statsLinks', ()=>{
   it('uma matriz de 2 links, deve retornar 2 links exclusivo', ()=>{
     expect(statsLinks(uniqueLinksArray)).toEqual(statsLinksArray);
   });
@@ -130,7 +131,7 @@ describe('statsLinks deve retornar o total de links', ()=>{
     });
 });
 
-describe('function httpLinks', ()=>{
+describe('httpLinks', ()=>{
    it('retorna uma promessa com links validados', ()=>{
     httpLinks(defaultArray).then((res) =>{
       expect(res).toEqual(arrayValidate);
@@ -162,3 +163,4 @@ describe('getFiles e MdFiles', ()=>{
     expect(getMdFiles(files)).toEqual(mdFiles)
   })
 })
+

@@ -7,6 +7,16 @@ import { statsLinks, validateStatsLinks } from './functions.js';
 const userPath = process.argv[2];
 const argvUser = process.argv;
 
+console.log(
+  chalk.bold.blue(
+    figlet.textSync("Mdlinks", {
+      font: "Standard",
+      horizontalLayout: "completo",     
+      width: 100,
+    })
+  )
+);
+
 const cli = (route, argv) => {
   if (route === undefined || null) {
     console.log(chalk.bgYellow("Ops! Insira um caminho ⚠ "));
@@ -37,18 +47,7 @@ const cli = (route, argv) => {
       const stats = statsLinks(res);
       console.table(stats);
     });
-  } else if (argv.includes("--help")) {
-    console.log(
-      chalk.bold.blue(
-        figlet.textSync("Mdlinks", {
-          font: "Big",
-          horizontalLayout: "default",
-          verticalLayout: "default",
-          width: 100,
-        })
-      )
-    );
-  } else if (argv.length === 3) {
+   } else if (argv.length === 3) {
     mdLinks(route)
       .then((res) => {
         if (res.length === 0) {
@@ -64,18 +63,16 @@ const cli = (route, argv) => {
       })
       .catch((error) => console.error(chalk.bgRed.bold(error)));
   } else if (
-    !(argv.includes("--validate") || argv.includes("--v")) &&
-    !(argv.includes("--stats") || argv.includes("--s")) &&
-    !argv.includes("--sv")
-  ) {
+    !(argv.includes("--validate")) && !(argv.includes("--stats")))
+   {
     console.log(
       chalk.bgYellow.bold("Digite um comando válido"),
-      "\n",
-      chalk.yellow.bold(" Veja os comandos --help")
-    );
+      );
   }
 };
 
 cli(userPath, argvUser);
 
-export default{ cli };
+export{ cli };
+
+ 
