@@ -8,8 +8,9 @@ getUniqueLinks,
 statsLinks,
 validateStatsLinks,
 readFiles,
-loopFilesMd
 } from '../src/functions.js';
+
+
 
 const relativePath = "arquivos"
 const absolutePath = "C:\\Users\\dayan\\Desktop\\LAB\\md-links\\arquivos";
